@@ -6,7 +6,7 @@ package com.qcenzo.apps.album.effects
 	public class Queue extends Effect
 	{
 		private var _asp:Number;
-		private var _t:Number;
+		private var _t:int;
 		private var _m:Matrix3D;
 		
 		public function Queue(aspectRatio:Number)
@@ -14,19 +14,16 @@ package com.qcenzo.apps.album.effects
 			super();
 			_asp = aspectRatio;
 			_m = new Matrix3D();
-			_t = 0;
 		}
 		
 		override public function moveFunc(model:Matrix3D):void
 		{
 			model.identity();
 			_m.identity();
-			_m.appendTranslation(0, 0, 1000 * _t);
-			_t += .006;
-			if (_t > 10)
+			_m.appendTranslation(0, 0, _t);
+			_t += 6;
+			if (_t > 10000)
 				_t = 0;
-			
-			
 			model.append(_m);
 		}
 		

@@ -20,7 +20,6 @@ package com.qcenzo.apps.album.effects
 			var c:int = Math.sqrt(numQuads);
 			var dy:Number = 2 / c;
 			var dx:Number = _asp * dy;
-			dy = dx;
 			var x0:Number;
 			var y0:Number;
 			var z0:Number = 0; 
