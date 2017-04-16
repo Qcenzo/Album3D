@@ -28,7 +28,7 @@ package com.qcenzo.apps.album.effects
 			var dLong:Number = 2 * Math.PI / segh;//经度增量
 			var dLat:Number = Math.PI / segv;//纬度增量
 			var long:Number;
-			var lat:Number = dLat;
+			var lat:Number;
 			var r:Number;
 			var n:int = segh * (segv - 2);
 			var w:Number;
