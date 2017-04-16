@@ -4,7 +4,7 @@
 - Flash player 16.0
 - AIR 16.0
 ### Class Diagram
-![](http://www.qcenzo.com/2017/apps/album3d/0.png)
+![](http://www.qcenzo.com/2017/apps/album3d/0.jpg)
 ### Usage ###
 
 	 var a:Album = new Album(stage);	
