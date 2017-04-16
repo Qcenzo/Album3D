@@ -25,6 +25,19 @@ package com.qcenzo.apps.album.effects
 		{
 			generateMesh(numQuads);
 			
+			//随机打乱
+			var n:int;
+			var quad:Vector.<Number>;
+			var temp:Vector.<Number> = new Vector.<Number>();
+			while (_vx.length > 0)
+			{
+				n = 16 * int((_vx.length / 16) * Math.random());
+				quad = _vx.splice(n, 16);
+				while (quad.length > 0)
+					temp.push(quad.shift());
+			}
+			_vx = temp;
+			
 			_nvx /= 4;
 			_vxb = context.createVertexBuffer(_nvx, 4);
 			_vxb.uploadFromVector(_vx, 0, _nvx);
