@@ -2,7 +2,9 @@ package com.qcenzo.apps.album
 {
 	import com.qcenzo.apps.album.effects.Cube;
 	import com.qcenzo.apps.album.effects.Effect;
+	import com.qcenzo.apps.album.effects.Logo;
 	import com.qcenzo.apps.album.effects.Queue;
+	import com.qcenzo.apps.album.effects.Sphere;
 	import com.qcenzo.apps.album.effects.Tile;
 	
 	import flash.display3D.Context3D;
@@ -21,7 +23,7 @@ package com.qcenzo.apps.album
 		/**
 		 * 效果过渡时间（ 毫秒） 
 		 */
-		private const DURATION:int = 1000;
+		private const DURATION:int = 2000;
 		
 		private var _vector:Vector.<Number>;
 		private var _ixb:IndexBuffer3D;
@@ -36,11 +38,12 @@ package com.qcenzo.apps.album
 		public function Effector(w:int, h:int)
 		{
 			_vector = Vector.<Number>([0, 1, 1, 0]);
-//			_list = Vector.<Effect>([new Cube(), new Sphere(), new Tile(w / h)]); 
 			_list = new Vector.<Effect>();
 			_list.push(new Queue(w / h));
 			_list.push(new Tile(w / h));
 			_list.push(new Cube());
+			_list.push(new Sphere());
+			_list.push(new Logo("Logo", w / h));
 
 			_mlnk = new MatrixLink(w, h, _list[_indx0].modelStatus1, _list[_indx0].cameraStatus, _list[_indx0].moveFunc);
 		}
