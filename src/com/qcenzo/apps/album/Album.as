@@ -60,7 +60,6 @@ package com.qcenzo.apps.album
 			_cont.configureBackBuffer(_stage.stageWidth, _stage.stageHeight, _antia);
 			_cont.setDepthTest(true, Context3DCompareMode.ALWAYS);
 			_cont.setCulling(Context3DTriangleFace.BACK);
-			_cont.enableErrorChecking = true;
 			
 			if (c == null)
 			{
