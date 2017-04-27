@@ -4,6 +4,7 @@ package com.qcenzo.apps.album
 	import flash.display.Stage;
 	import flash.display.Stage3D;
 	import flash.display3D.Context3D;
+	import flash.display3D.Context3DBlendFactor;
 	import flash.display3D.Context3DCompareMode;
 	import flash.display3D.Context3DProfile;
 	import flash.display3D.Context3DRenderMode;
@@ -55,11 +56,10 @@ package com.qcenzo.apps.album
 		private function onCreate(event:Event):void
 		{
 			var c:Context3D = _cont;
-			
+			 
 			_cont = (event.target as Stage3D).context3D;
 			_cont.configureBackBuffer(_stage.stageWidth, _stage.stageHeight, _antia);
 			_cont.setDepthTest(true, Context3DCompareMode.ALWAYS);
-			_cont.setCulling(Context3DTriangleFace.BACK);
 			
 			if (c == null)
 			{

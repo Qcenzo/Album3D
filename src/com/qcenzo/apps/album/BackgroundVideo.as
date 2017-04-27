@@ -3,12 +3,14 @@ package com.qcenzo.apps.album
 	import com.adobe.utils.AGALMiniAssembler;
 	
 	import flash.display3D.Context3D;
+	import flash.display3D.Context3DBlendFactor;
 	import flash.display3D.Context3DProgramType;
 	import flash.display3D.Context3DVertexBufferFormat;
 	import flash.display3D.IndexBuffer3D;
 	import flash.display3D.Program3D;
 	import flash.display3D.VertexBuffer3D;
 	import flash.display3D.textures.VideoTexture;
+	import flash.events.AsyncErrorEvent;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.NetStatusEvent;
@@ -38,6 +40,7 @@ package com.qcenzo.apps.album
 			
 			_ns = new NetStream(_nc);
 			_ns.addEventListener(IOErrorEvent.IO_ERROR, onIOError);
+			_ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, onAError);
 			_ns.addEventListener(NetStatusEvent.NET_STATUS, onStat);
 			_ns.client = this;
 		}
@@ -87,6 +90,7 @@ package com.qcenzo.apps.album
 		{
 			if (_ready)
 			{
+				_cont.setBlendFactors(Context3DBlendFactor.ONE, Context3DBlendFactor.ZERO);
 				_cont.setVertexBufferAt(0, _vxb, 0, Context3DVertexBufferFormat.FLOAT_2);
 				_cont.setVertexBufferAt(1, _vxb, 2, Context3DVertexBufferFormat.FLOAT_2);
 				_cont.setVertexBufferAt(2, null);
@@ -126,6 +130,10 @@ package com.qcenzo.apps.album
 		}
 		
 		private function onIOError(event:IOErrorEvent):void 
+		{
+		}
+		
+		private function onAError(event:AsyncErrorEvent):void
 		{
 		}
 	}

@@ -6,6 +6,7 @@ package com.qcenzo.apps.album
 	
 	import flash.display.BitmapData;
 	import flash.display3D.Context3D;
+	import flash.display3D.Context3DBlendFactor;
 	import flash.display3D.Context3DProgramType;
 	import flash.display3D.Context3DTextureFormat;
 	import flash.display3D.Context3DVertexBufferFormat;
@@ -78,6 +79,7 @@ package com.qcenzo.apps.album
 		 
 		public function render():void
 		{
+			_cont.setBlendFactors(Context3DBlendFactor.SOURCE_ALPHA, Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA);
 			_cont.setVertexBufferAt(0, _eff.vxb0, 0, Context3DVertexBufferFormat.FLOAT_3);
 			_cont.setVertexBufferAt(1, _eff.vxb1, 0, Context3DVertexBufferFormat.FLOAT_3);
 			_cont.setVertexBufferAt(2, _eff.uvb, 0, Context3DVertexBufferFormat.FLOAT_2);

@@ -23,7 +23,7 @@ package com.qcenzo.apps.album
 		/**
 		 * 效果过渡时间（ 毫秒） 
 		 */
-		private const DURATION:int = 2000;
+		private const DURATION:int = 1000;
 		
 		private var _vector:Vector.<Number>;
 		private var _ixb:IndexBuffer3D;
@@ -40,17 +40,17 @@ package com.qcenzo.apps.album
 			_vector = Vector.<Number>([0, 1, 1, 0]);
 			_list = new Vector.<Effect>();
 			_list.push(new Queue(w / h));
-			_list.push(new Tile(w / h));
 			_list.push(new Cube());
-			_list.push(new Sphere());
 			_list.push(new Logo("Logo", w / h));
+			_list.push(new Tile(w / h));
+			_list.push(new Sphere());
 
 			_mlnk = new MatrixLink(w, h, _list[_indx0].modelStatus1, _list[_indx0].cameraStatus, _list[_indx0].moveFunc);
 		}
 		
 		public function setup(context:Context3D, numQuads:int):void
 		{
-			_vector[3] = 1 / numQuads;
+			_vector[3] = DURATION;
 			
 			//xyz
 			for (var i:int = 0; i < _list.length; i++)
@@ -122,7 +122,7 @@ package com.qcenzo.apps.album
 		}
 		
 		/**
-		 * [剩余时间，已消耗时间，结束标记，每一片小矩形的差值总时间] 
+		 * [保留，已消耗时间，结束标记，每一片小矩形的差值总时间] 
 		 * @return 
 		 * 
 		 */
@@ -130,17 +130,16 @@ package com.qcenzo.apps.album
 		{
 			if (_chging)
 			{
-				var beta:Number = (getTimer() - _time) / DURATION; 
-				if (beta >= 1)
+				var beta:Number = getTimer() - _time;
+				if (beta >= DURATION)
 				{
-					beta = 1;
-					_indx0 = _indx1;
+					beta = DURATION;
+					_indx0 = _indx1;	
 					_chging = false;
 				}
-				_vector[0] = 1 - beta;
 				_vector[1] = beta;
 				
-				_mlnk.lerp(beta);
+				_mlnk.lerp(beta / DURATION);
 			}
 			return _vector;
 		}
