@@ -1,7 +1,6 @@
 package com.qcenzo.apps.album.effects
 {
 	import flash.geom.Matrix3D;
-	import flash.geom.Vector3D;
 
 	public class Queue extends Effect
 	{

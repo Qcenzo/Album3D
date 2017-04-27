@@ -42,8 +42,8 @@ package com.qcenzo.apps.album.effects
 		{
 			var w:int = _canvas.width;
 			var h:int = _canvas.height;
-			var dx:Number = 1 / w;
-			var dy:Number = 1 / h;
+			var dx:Number = 4 / w;
+			var dy:Number = 4 / h;
 			var n:int;
 			var x0:Number;
 			var y0:Number;
