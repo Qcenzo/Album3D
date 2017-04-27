@@ -3,7 +3,6 @@ package com.qcenzo.apps.album
 	import com.adobe.utils.PerspectiveMatrix3D;
 	
 	import flash.geom.Matrix3D;
-	import flash.geom.Vector3D;
 
 	public class MatrixLink extends Matrix3D
 	{

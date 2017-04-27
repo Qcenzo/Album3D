@@ -1,7 +1,5 @@
 package com.qcenzo.apps.album
 {
-	import avmplus.FLASH10_FLAGS;
-	
 	import com.adobe.utils.AGALMiniAssembler;
 	
 	import flash.display.BitmapData;
