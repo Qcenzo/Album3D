@@ -1,6 +1,7 @@
 package com.qcenzo.apps.album
 {
 	import com.adobe.utils.AGALMiniAssembler;
+	import com.qcenzo.apps.album.effects.Effect;
 	
 	import flash.display.BitmapData;
 	import flash.display3D.Context3D;
@@ -25,16 +26,26 @@ package com.qcenzo.apps.album
 		{ 
 			_eff = new Effector(w, h);
 		}
-		
-		public function get effector():Effector
-		{
-			return _eff;
-		}
 
-		public function add(index:int, bitmapData:BitmapData, n:int):void
+		public function addEffect(e:Effect):void
+		{
+			_eff.addEffect(e);
+		}
+		
+		public function prevEffect():void
+		{
+			_eff.prevEffect();
+		}
+		
+		public function nextEffect():void
+		{
+			_eff.nextEffect();
+		}
+		
+		public function add(bitmapData:BitmapData, numIcons:int):void
 		{
 			_bitmapData = bitmapData;
-			_num = n;
+			_num = numIcons; 
 		}
 		
 		public function setup(context:Context3D):void

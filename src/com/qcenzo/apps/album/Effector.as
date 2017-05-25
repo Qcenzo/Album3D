@@ -2,19 +2,16 @@ package com.qcenzo.apps.album
 {
 	import com.qcenzo.apps.album.effects.Cube;
 	import com.qcenzo.apps.album.effects.Effect;
-	import com.qcenzo.apps.album.effects.Logo;
-	import com.qcenzo.apps.album.effects.Queue;
-	import com.qcenzo.apps.album.effects.Sphere;
-	import com.qcenzo.apps.album.effects.Tile;
 	
 	import flash.display3D.Context3D;
 	import flash.display3D.IndexBuffer3D;
 	import flash.display3D.VertexBuffer3D;
 	import flash.geom.Matrix3D;
 	import flash.utils.getTimer;
+	import com.qcenzo.apps.album.math.MatrixLink;
 
 	/**
-	 * Effector采用线性插值处理运动特效切换，包括模型变形、相机空间的位置变换。特效共享UV、纹理和索引缓冲，不共享相机视角、模型网格和网格变形延时
+	 * Effector处理运动特效切换，包括模型变形、相机空间的位置变换。特效共享UV、纹理和索引缓冲，不共享相机视角、模型网格和网格变形延时
 	 * @author Charles Chen
 	 * 
 	 */
@@ -23,8 +20,9 @@ package com.qcenzo.apps.album
 		/**
 		 * 效果过渡时间（ 毫秒） 
 		 */
-		private const DURATION:int = 1000;
+		private var DURATION:int = 1000; 
 		
+		private var _asp:Number;
 		private var _vector:Vector.<Number>;
 		private var _ixb:IndexBuffer3D;
 		private var _uvb:VertexBuffer3D;
@@ -37,19 +35,23 @@ package com.qcenzo.apps.album
 		
 		public function Effector(w:int, h:int)
 		{
+			_asp = w / h;
 			_vector = Vector.<Number>([0, 1, 1, 0]);
 			_list = new Vector.<Effect>();
-			_list.push(new Queue(w / h));
 			_list.push(new Cube());
-			_list.push(new Logo("Logo", w / h));
-			_list.push(new Tile(w / h));
-			_list.push(new Sphere());
-
-			_mlnk = new MatrixLink(w, h, _list[_indx0].modelStatus1, _list[_indx0].cameraStatus, _list[_indx0].moveFunc);
+			_mlnk = new MatrixLink(_asp, _list[_indx0].modelStatus1, _list[_indx0].cameraStatus, _list[_indx0].moveFunc);
+		}
+		
+		public function addEffect(e:Effect):void
+		{
+			e.aspectRatio = _asp;
+			_list.push(e);
 		}
 		
 		public function setup(context:Context3D, numQuads:int):void
 		{
+			_list.fixed = true;
+			
 			_vector[3] = DURATION;
 			
 			//xyz
@@ -97,7 +99,7 @@ package com.qcenzo.apps.album
 			_ixb.uploadFromVector(ix, 0, j);
 		}
 		
-		public function prev():void
+		public function prevEffect():void
 		{
 			if (_chging)
 				return;
@@ -109,7 +111,7 @@ package com.qcenzo.apps.album
 			update();
 		}
 		
-		public function next():void
+		public function nextEffect():void
 		{
 			if (_chging)
 				return;
@@ -122,7 +124,7 @@ package com.qcenzo.apps.album
 		}
 		
 		/**
-		 * [保留，已消耗时间，结束标记，每一片小矩形的差值总时间] 
+		 * [保留，已消耗时间，结束标记，每一片小矩形的插值总时间] 
 		 * @return 
 		 * 
 		 */

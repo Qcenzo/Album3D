@@ -8,14 +8,12 @@ package com.qcenzo.apps.album.effects
 	public class Logo extends Effect
 	{
 		private var _canvas:BitmapData;
-		private var _asp:Number;
 		private var _t:Number;
 
-		public function Logo(logo:String, aspectRatio:Number)
+		public function Logo(logo:String)
 		{
 			super();
 			
-			_asp = aspectRatio;
 			_t = 0;
 			
 			var tf:TextField = new TextField();
@@ -48,7 +46,7 @@ package com.qcenzo.apps.album.effects
 			var x0:Number;
 			var y0:Number;
 			var z0:Number = 0;
-			var w0:Number;
+			var w0:Number; 
 			for (var i:int = 0; i < w; i++)
 			{
 				for (var j:int = 0; j < h; j++)

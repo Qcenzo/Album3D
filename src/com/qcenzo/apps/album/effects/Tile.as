@@ -2,16 +2,12 @@ package com.qcenzo.apps.album.effects
 {
 	public class Tile extends Effect
 	{
-		private var _asp:Number;
-
-		public function Tile(aspectRatio:Number)
+		public function Tile()
 		{
-			super();
-			_asp = aspectRatio;
 		}
 		
 		override protected function initCameraStat():void
-		{
+		{ 
 			_cmrStat.appendTranslation(0, 0, -1);
 		}
 		

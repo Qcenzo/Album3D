@@ -42,7 +42,7 @@ package com.qcenzo.apps.album
 			_ns.addEventListener(IOErrorEvent.IO_ERROR, onIOError);
 			_ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, onAError);
 			_ns.addEventListener(NetStatusEvent.NET_STATUS, onStat);
-			_ns.client = this;
+			_ns.client = {};
 		}
 		
 		public function setup(context:Context3D):void
@@ -99,18 +99,6 @@ package com.qcenzo.apps.album
 				_cont.setTextureAt(0, _tex);
 				_cont.drawTriangles(_ixb);
 			}
-		}
-		
-		public function onMetaData(data:Object):void 
-		{
-		}
-		
-		public function onXMPData(data:Object):void 
-		{
-		}
-		
-		public function onImageData(data:Object):void
-		{
 		}
 		
 		public function onPlayStatus(data:Object):void

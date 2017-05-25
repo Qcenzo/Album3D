@@ -4,15 +4,12 @@ package com.qcenzo.apps.album.effects
 
 	public class Queue extends Effect
 	{
-		private var _asp:Number;
 		private var _t:int;
 		private var _m:Matrix3D;
 		
-		public function Queue(aspectRatio:Number)
+		public function Queue()
 		{
-			super();
-			_asp = aspectRatio;
-			_m = new Matrix3D();
+			_m = new Matrix3D(); 
 		}
 		
 		override public function moveFunc(model:Matrix3D):void

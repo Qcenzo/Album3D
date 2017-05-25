@@ -1,5 +1,7 @@
 package com.qcenzo.apps.album
 {
+	import com.qcenzo.apps.album.effects.Effect;
+	
 	import flash.display.BitmapData;
 	import flash.display.Stage;
 	import flash.display.Stage3D;
@@ -31,9 +33,9 @@ package com.qcenzo.apps.album
 			_stage.stage3Ds[0].requestContext3D(Context3DRenderMode.AUTO, Context3DProfile.STANDARD_CONSTRAINED);
 		}
 		
-		public function addTexture(index:int, bitmapData:BitmapData, n:int):void
+		public function addTexture(bitmapData:BitmapData, numIcons:int):void
 		{
-			_atl.add(index, bitmapData, n);
+			_atl.add(bitmapData, numIcons);
 		}
 		
 		public function playVideo(url:String, onComplete:Function):void
@@ -41,14 +43,19 @@ package com.qcenzo.apps.album
 			_bgv.play(url, onComplete);
 		}
 		
+		public function addEffect(e:Effect):void
+		{
+			_atl.addEffect(e);
+		}
+		
 		public function prevEffect():void
 		{
-			_atl.effector.prev();
+			_atl.prevEffect();
 		}
 		
 		public function nextEffect():void
 		{
-			_atl.effector.next();
+			_atl.nextEffect();
 		}
 		
 		private function onCreate(event:Event):void

@@ -10,6 +10,7 @@ package com.qcenzo.apps.album.effects
 		protected var _nvx:int;
 		protected var _modStat1:Matrix3D;
 		protected var _cmrStat:Matrix3D;
+		protected var _asp:Number;
 		private var _vxb:VertexBuffer3D;
 
 		public function Effect()
@@ -21,7 +22,12 @@ package com.qcenzo.apps.album.effects
 			initCameraStat();
 		}
 		
-		public function createVertexBuffer(context:Context3D, numQuads:int):void
+		public function set aspectRatio(value:Number):void
+		{
+			_asp = value; 
+		}
+
+		public final function createVertexBuffer(context:Context3D, numQuads:int):void
 		{
 			generateMesh(numQuads);
 			
